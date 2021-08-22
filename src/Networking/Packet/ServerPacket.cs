@@ -5,13 +5,13 @@ namespace Common.Networking.Packet
 {
     public class ServerPacket : GamePacket
     {
-        public ServerPacketType Opcode { get; set; }
+        public byte Opcode { get; set; }
 
-        public ServerPacket(ServerPacketType opcode, IWritable writable = null)
+        public ServerPacket(byte opcode, IWritable writable = null)
         {
             using (var writer = new PacketWriter()) 
             {
-                writer.Write((byte)opcode);
+                writer.Write(opcode);
                 if (writable != null) writable.Write(writer);
 
                 var stream = writer.GetStream();
